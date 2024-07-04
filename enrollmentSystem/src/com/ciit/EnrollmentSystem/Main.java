@@ -31,8 +31,6 @@ public class Main {
 		
 		
 		
-		
-		
 		while (inputChar != 'Q') { 
 		System.out.println("Enrollment System");
 		System.out.println("[1] - Create New Account");
@@ -113,10 +111,19 @@ public class Main {
 						}
 
 						System.out.println("Grade Level:");
-						tempYearLevel = Integer.parseInt(reader.readLine());
-						while (tempYearLevel > 12) {
-							System.out.println("[Error] Grade Level must be between 1 - 12");
-							tempYearLevel = Integer.parseInt(reader.readLine());
+						tempYearLevel = 0;
+						while (tempYearLevel < 1 || tempYearLevel > 12) {
+							try {
+								tempYearLevel = Integer.parseInt(reader.readLine());
+								
+							
+								if (tempYearLevel < 1 || tempYearLevel > 12) {
+									System.out.println("[Error] Grade Level must be between 1 - 12 (no text please)");
+								}
+							}
+							catch (NumberFormatException e) {
+								System.out.println("[ERROR] Invalid input. Please input a valid integer.");
+							}							
 						}
 						
 						if (tempBirthMonth > 12 || tempBirthDay > 31) {
